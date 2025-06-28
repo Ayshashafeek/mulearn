@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Email Verification</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .verification-container {
+      background-color: #ffffff;
+      padding: 2.5rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      max-width: 420px;
+      animation: fadeIn 0.5s ease-in-out;
+      z-index: 2;
+    }
+
+    /* Animation keyframes */
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Apply animations */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.slow-spin {
+  animation: rotate 10s linear infinite;
+}
+
+
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #7e3ff2;
+      margin-bottom: 1rem;
+    }
+
+    .verification-container h2 {
+      font-size: 1.7rem;
+      color: #1f1f1f;
+      margin-bottom: 0.6rem;
+    }
+
+    .verification-container p {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .btn-resend {
+      background-color: #5c6bc0;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: not-allowed;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .btn-resend.enabled {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    .btn-resend:hover.enabled {
+      background-color: #3949ab;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 1.2rem;
+    }
+
+    .timer {
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 0.5rem;
+    }
+
+    /* Illustration styles with unique positions */
+    .img-top-left {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 200px;
+      opacity: 0.9;
+    }
+
+    .img-top-right {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 200px;
+      opacity: 0.85;
+    }
+
+    .img-bottom-left {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      width: 200px;
+      opacity: 0.8;
+    }
+
+    .img-bottom-right {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 200px;
+      opacity: 0.8;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 1.6rem;
+      font-size: 0.9rem;
+      color: #5c6bc0;
+      text-decoration: none;
+    }
+
+    @media (max-width: 480px) {
+      .img-top-left,
+      .img-top-right,
+      .img-bottom-left,
+      .img-bottom-right {
+        display: none;
+      }
+
+      .verification-container {
+        padding: 2rem 1.5rem;
+      }
+    }
+    /* Floating up and down */
+@keyframes floatSlow {
+  0%   { transform: translateX(10px); }
+  50%  { transform: translateX(-10px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Slow wiggle / rotation */
+@keyframes slowWiggle {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Rocket fly across from bottom-right to top-right */
+@keyframes flyRocket {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-70px);
+    opacity: 1;
+  }
+}
+
+/* Assigning animations to elements */
+.img-top-left {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.img-top-right {
+  animation: slowWiggle 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.img-bottom-left {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.img-bottom-right {
+  animation: flyRocket 8s linear infinite;
+}
+
+      
+
+  </style>
+</head>
+<body>
+
+  <!-- Distributed decorative illustrations -->
+  <img src="planet.png" alt="Planet" class="img-top-left">
+  <img src="ufo.png" alt="UFO" class="img-top-right">
+  <img src="ss.png" alt="Shooting Star" class="img-bottom-left">
+  <img src="rocket.png" alt="Rocket" class="img-bottom-right">
+
+
+  <!-- Main verification box -->
+  <div class="verification-container">
+    <div class="logo">μLearn</div>
+    <h2>Check Your Inbox</h2>
+    <p>We've sent a verification link to <strong>your email</strong>.<br>Please click the link to activate your account.</p>
+    
+    <button id="resendBtn" class="btn-resend" disabled>Resend Email</button>
+    <div class="timer" id="timerText">You can resend in 30 seconds</div>
+    <div class="note">Didn’t get it? Check your spam or junk folder.</div>
+
+    <a href="login.html" class="back-link">← Back to Login</a>
+  </div>
+
+</body>
+</html>
